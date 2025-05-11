@@ -1,2 +1,0 @@
-# click-me
-Click Me
