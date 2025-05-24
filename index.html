@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cyber Awareness</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      font-family: 'Courier New', Courier, monospace;
+      overflow: hidden;
+    }
+
+    #warning {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: red;
+      font-size: 3em;
+      text-align: center;
+      animation: glitch 0.7s infinite;
+      z-index: 2;
+    }
+
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 2em;
+      text-align: center;
+      display: none;
+      white-space: pre-line;
+      z-index: 3;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+      20% { text-shadow: -2px 0 red, 2px 0 cyan; }
+      40% { text-shadow: 2px 2px red, -2px -2px cyan; }
+      60% { text-shadow: -2px -2px red, 2px 2px cyan; }
+      80% { text-shadow: 2px 0 red, -2px 0 cyan; }
+      100% { text-shadow: none; }
+    }
+  </style>
+</head>
+<body onclick="revealMessage()">
+
+  <div id="warning">YOUR DEVICE HAS BEEN HACKED!</div>
+  <div id="message"></div>
+
+  <script>
+    const fullText = "Don't be quick to click.\nDon't be a victim.\n– Tamil Nadu Cyber Crime Wing";
+    let alreadyClicked = false;
+
+    function revealMessage() {
+      if (alreadyClicked) return; // Prevent multiple clicks
+      alreadyClicked = true;
+
+      // Hide the glitch warning
+      document.getElementById('warning').style.display = 'none';
+
+      // Show message container
+      const messageDiv = document.getElementById('message');
+      messageDiv.style.display = 'block';
+
+      // Typewriter effect
+      let i = 0;
+      function typeWriter() {
+        if (i < fullText.length) {
+          messageDiv.innerHTML += fullText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      }
+      typeWriter();
+    }
+  </script>
+
+</body>
+</html>
